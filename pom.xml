@@ -26,6 +26,7 @@
         <hutool.version>4.5.1</hutool.version>
         <activiti.version>6.0.0</activiti.version>
         <apache.xmlgraphics.version>1.7</apache.xmlgraphics.version>
+        <mysql.version>5.1.41</mysql.version>
     </properties>
 
     <repositories>
@@ -133,6 +134,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
