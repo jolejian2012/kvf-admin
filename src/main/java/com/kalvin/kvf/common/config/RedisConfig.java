@@ -35,6 +35,7 @@ public class RedisConfig extends CachingConfigurerSupport {
     /**
      * 注入生成key的策略(作用于注解注解缓存)
      */
+    @Override
     @Bean(name = "customKeyGenerator")
     public KeyGenerator keyGenerator() {
         return new RedisCacheKeyGenerator();
