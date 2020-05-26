@@ -47,7 +47,7 @@
     <property name="LOG_FILE_NAME" value="kvf-admin"/>
     <!-- 日志文件目录（按环境分） -->
     <springProfile name="dev">
-        <property name="LOG_PATH" value="D://logs"/>
+        <property name="LOG_PATH" value="F://workspace//kvf-admin_log"/>
     </springProfile>
     <springProfile name="test">
         <property name="LOG_PATH" value="/tmp/logs/kvf-admin"/>
