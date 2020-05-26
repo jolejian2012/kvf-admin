@@ -128,7 +128,7 @@
         "properties" : [ {
             "id" : "usertaskassignment",
             "type" : "Complex",
-            "title" : "代理",
+            "title" : "分配用户",
             "value" : "",
             "description" : "Assignment definition for the user task",
             "popular" : true

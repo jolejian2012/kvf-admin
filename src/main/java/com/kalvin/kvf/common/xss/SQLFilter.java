@@ -28,9 +28,6 @@ public final class SQLFilter {
         str = StrUtil.replace(str, ";", "");
         str = StrUtil.replace(str, "\\", "");
 
-        // 转换成小写
-//        str = str.toLowerCase();
-
         String[] values = str.split(" ");
 
         // 非法字符

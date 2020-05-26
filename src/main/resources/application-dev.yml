@@ -67,9 +67,9 @@ spring:
   # redis配置
   redis:
     # Redis数据库索引
-    database: 0
+    database: 6
     # Redis服务器地址
-    host: 127.0.0.1
+    host: redis.kvf.com
     port: 6379
     password:
     jedis:
@@ -113,4 +113,4 @@ kvf:
     enable: false
   # 缓存开关
   cache:
-    enable: false
+    enable: true

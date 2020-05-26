@@ -8,7 +8,10 @@ public enum UploadPathEnum {
     FILE_PATH(0, "static/upload/file/"),
     IMAGE_PATH(1, "static/upload/image/"),
     DOC_PATH(2, "static/upload/doc/"),
-    HEAD_PATH(3, "static/image/avatar/");  // 用户头像
+    /**
+     * 用户头像
+     */
+    HEAD_PATH(3, "static/image/avatar/");
 
     private int type;
     private String path;

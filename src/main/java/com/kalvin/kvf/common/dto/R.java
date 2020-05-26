@@ -14,8 +14,14 @@ public class R implements Serializable {
 
     private Integer code;
     private String msg;
+    /**
+     * 数据
+     */
     private Object data;
-    private Long total; // 分页信息：总条数
+    /**
+     * 分页信息：总条数
+      */
+    private Long total;
 
     public R() { }
 
