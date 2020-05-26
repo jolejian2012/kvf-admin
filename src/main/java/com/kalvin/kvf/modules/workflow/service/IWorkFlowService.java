@@ -21,6 +21,13 @@ public interface IWorkFlowService {
     String create(ModelVO modelVO);
 
     /**
+     * 新增用户
+     * @param userVO
+     * @return
+     */
+    public String addUser(UserVO userVO);
+
+    /**
      * 发布/部署流程
      * @param modelId 模型ID
      * @return 流程定义ID

@@ -25,12 +25,15 @@ import org.activiti.bpmn.model.BpmnModel;
 import org.activiti.editor.constants.ModelDataJsonConstants;
 import org.activiti.editor.language.json.converter.BpmnJsonConverter;
 import org.activiti.engine.HistoryService;
+import org.activiti.engine.IdentityService;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.TaskService;
 import org.activiti.engine.history.HistoricProcessInstance;
 import org.activiti.engine.history.HistoricProcessInstanceQuery;
 import org.activiti.engine.history.HistoricTaskInstance;
 import org.activiti.engine.history.HistoricTaskInstanceQuery;
+import org.activiti.engine.identity.Group;
+import org.activiti.engine.identity.User;
 import org.activiti.engine.impl.persistence.entity.ModelEntity;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.Model;
@@ -39,6 +42,7 @@ import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.task.Comment;
 import org.activiti.engine.task.Task;
 import org.activiti.engine.task.TaskQuery;
+import org.apache.commons.collections.ListUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -63,6 +67,9 @@ public class WorkFlowServiceImpl implements IWorkFlowService {
 
     @Resource
     private TaskService taskService;
+
+    @Resource
+    private IdentityService identityService;
 
     @Resource
     private HistoryService historyService;
@@ -101,6 +108,38 @@ public class WorkFlowServiceImpl implements IWorkFlowService {
         repositoryService.saveModel(model);
         repositoryService.addModelEditorSource(model.getId(), editorNode.toString().getBytes(StandardCharsets.UTF_8));
         return model.getId();
+    }
+
+    /**
+     * 新增用户
+     * @param userVO
+     * @return
+     */
+    @Override
+    public String addUser(UserVO userVO) {
+        // 用户分组不存在则新增
+        Group groupExist = identityService.createGroupQuery().groupId(userVO.getGroupId()).singleResult();
+        if (groupExist == null) {
+            Group group = identityService.newGroup(userVO.getGroupId());
+            group.setName(userVO.getGroupName());
+            group.setType(userVO.getGroupType());
+            identityService.saveGroup(group);
+        }
+
+        // 用户不存在则新增
+        User userExist = identityService.createUserQuery().userId(userVO.getUserId()).singleResult();
+        if (userExist == null) {
+            User user = identityService.newUser(userVO.getUserId());
+            user.setFirstName(userVO.getUserName());
+            user.setLastName(userVO.getUserName());
+            user.setEmail(userVO.getEmail());
+            identityService.saveUser(user);
+        }
+
+        // 用户 && 用户组
+        identityService.createMembership(userVO.getUserId(), userVO.getGroupId());
+
+        return userVO.getUserId();
     }
 
     @Override
