@@ -15,12 +15,10 @@ import com.kalvin.kvf.modules.workflow.vo.FormConfigVO;
 import lombok.extern.slf4j.Slf4j;
 import org.activiti.bpmn.model.FlowElement;
 import org.activiti.bpmn.model.UserTask;
-import org.activiti.engine.HistoryService;
-import org.activiti.engine.RepositoryService;
-import org.activiti.engine.RuntimeService;
-import org.activiti.engine.TaskService;
+import org.activiti.engine.*;
 import org.activiti.engine.history.HistoricActivityInstance;
 import org.activiti.engine.history.HistoricTaskInstance;
+import org.activiti.engine.impl.IdentityServiceImpl;
 import org.activiti.engine.impl.identity.Authentication;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
@@ -48,6 +46,9 @@ public class ProcessEngineImpl implements IProcessEngine {
 
     @Resource
     private TaskService taskService;
+
+    @Resource
+    private IdentityService identityService;
 
     @Resource
     private HistoryService historyService;

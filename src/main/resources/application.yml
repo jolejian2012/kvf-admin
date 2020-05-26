@@ -4,5 +4,17 @@ spring:
   profiles:
     active: dev
 
+  activiti:
+    # 是否自动部署流程(检查流程定义文件是否存在)
+    check-process-definitions: false
+    # 是否每次都更新数据库表结构
+    database-schema-update: "false"
+    # 记录历史等级
+    history-level: full
+    # 检测历史表是否存在
+    db-history-used: true
+    # 是否使用activti自带的用户体系
+    db-identity-used: true
+
 
 

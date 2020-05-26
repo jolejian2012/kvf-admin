@@ -1,18 +1,19 @@
 package com.kalvin.kvf.modules.workflow.config;
 
 
-import com.kalvin.kvf.modules.workflow.event.GlobalActivityEventListener;
 import org.activiti.engine.*;
+
+import com.kalvin.kvf.modules.workflow.event.GlobalActivityEventListener;
 import org.activiti.engine.delegate.event.ActivitiEventListener;
 import org.activiti.engine.impl.history.HistoryLevel;
 import org.activiti.spring.ProcessEngineFactoryBean;
 import org.activiti.spring.SpringProcessEngineConfiguration;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import javax.annotation.Resource;
+
 import javax.sql.DataSource;
 import java.util.ArrayList;
 
@@ -20,7 +21,7 @@ import java.util.ArrayList;
  * Create by Kalvin on 2020/4/20.
  */
 @Configuration
-public class ActivityConfig {
+public class ActivitiConfiguration {
 
     @Resource
     private DataSource dataSource;
@@ -36,11 +37,11 @@ public class ActivityConfig {
         SpringProcessEngineConfiguration spec = new SpringProcessEngineConfiguration();
         spec.setDataSource(dataSource);
         spec.setTransactionManager(platformTransactionManager);
-//        Resource[] resources = null;
 
         // 是否自动创建流程引擎表
         spec.setDatabaseSchemaUpdate(ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE);
         spec.setAsyncExecutorActivate(false);
+
         // 流程历史等级
         spec.setHistoryLevel(HistoryLevel.FULL);
 
@@ -57,7 +58,8 @@ public class ActivityConfig {
         return spec;
     }
 
-    /*@Bean
+    /*
+    @Bean
     public ProcessEngineFactoryBean processEngine() {
         ProcessEngineFactoryBean processEngineFactoryBean = new ProcessEngineFactoryBean();
         processEngineFactoryBean.setProcessEngineConfiguration(springProcessEngineConfiguration());
@@ -97,6 +99,6 @@ public class ActivityConfig {
     @Bean
     public IdentityService identityService(ProcessEngine processEngine) {
         return processEngine.getIdentityService();
-    }*/
-
+    }
+    */
 }

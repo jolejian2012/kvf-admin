@@ -3,7 +3,7 @@ package com.kalvin.kvf.modules.workflow.config;
 /**
  * Create by Kalvin on 2020/4/20.
  */
-public class ActivityConstant {
+public class ActivitiConstant {
 
     /** activity 相关常量 */
     public final static String FLOW_VARIABLE_KEY = "flowVariable";  // 流程变量key值
